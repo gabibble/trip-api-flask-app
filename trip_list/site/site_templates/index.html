@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid hero">
+  <div class="row">
+    <div class="hero-title ms-5 mt-5">
+      <h1>Plan your dream vacation</h1>
+      <br />
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('site.profile') }}" class="btnj mt-3">Get started</a>
+      {% else %}
+      <a href="{{ url_for('auth.signup') }}" class="btnj mt-3">Get started</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<main class="container">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h2 class="mt-5 middle">Create your collection</h2>
+      <p>
+        Harness the power of an API to collect and share data about trips you're
+        planning or taken.
+      </p>
+      <br />
+      <a href="#" class="btnj">Start building your API</a>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="../static/images/van.svg"
+        alt="van-life"
+        class="img-fluid p-4"
+      />
+    </div>
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h2 class="mt-5 middle fs-2">
+        Start planning your next trip, {{ current_user.first_name.title() }}!
+      </h2>
+      <p>Account: {{ current_user.email }}</p>
+      <p>Token: {{ current_user.token }}</p>
+      <br />
+      <a href="#addtrip" class="btnj">Add your next trip</a>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="../static/images/bike.svg"
+        alt="van-life"
+        class="img-fluid p-4"
+      />
+    </div>
+    {% with messages = get_flashed_messages(with_categories = true) %} {% if
+    messages %} {% for cat, msg in messages %} {% if cat == 'user-created' %}
+    <div class="container">
+      {{ msg }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        ,
+        onclick="this.parentElement.style.display='none'"
+      >
+        &times;
+      </button>
+    </div>
+    {% elif cat == 'auth-failed' %}
+    <div class="container">
+      {{ msg }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        ,
+        onclick="this.parentElement.style.display='none'"
+      >
+        &times;
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <div class="container form">
+      <h1 id="addtrip">Add a Trip</h1>
+      <h3 class="mb-4">Upload information for your next vacation</h3>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group mt4">
+          <fieldset id="trip-name-field">
+            {{ form.trip_name.label }} {{ form.trip_name(class = "form-control
+            mb-3")}}
+          </fieldset>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <fieldset id="city-field">
+                {{ form.city.label }} {{ form.city(class = "form-control")}}
+              </fieldset>
+            </div>
+            <div class="col-md-3">
+              <fieldset id="state-field">
+                {{ form.state.label }} {{ form.state(class = "form-control")}}
+              </fieldset>
+            </div>
+            <div class="col-md-3">
+              <fieldset id="country-field">
+                {{ form.country.label }} {{ form.country(class =
+                "form-control")}}
+              </fieldset>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <fieldset id="number-of-people">
+                {{ form.people.label }} {{ form.people(class = "form-control")}}
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset id="accommodation">
+                {{ form.accommodation.label }} {{ form.accommodation(class =
+                "form-control")}}
+              </fieldset>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <fieldset id="trip-length-field">
+                {{ form.trip_length.label }} {{ form.trip_length(class =
+                "form-control")}}
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset id="trip-date-field">
+                {{ form.trip_date.label }} {{ form.trip_date(class =
+                "form-control")}}
+              </fieldset>
+            </div>
+          </div>
+
+          {{ form.submit_button(class="btn btnj btn-primary btn-block mb-3",
+          value="Submit") }}
+        </div>
+      </form>
+    </div>
+    <h3 class="mt-5">Featured Trips:</h3>
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <img src="../static/images/granada.jpg" alt="" class="img-fluid" />
+        <h4>Granada</h4>
+      </div>
+      <div class="col-md-4">
+        <img src="../static/images/sanjuan.jpg" alt="" class="img-fluid" />
+        <h4>San Juan</h4>
+      </div>
+      <div class="col-md-4">
+        <img src="../static/images/phuket.jpg" alt="" class="img-fluid" />
+        <h4>Istanbul</h4>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

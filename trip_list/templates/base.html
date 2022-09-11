@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/606d8453fd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+
+    <title>Lets Go!</title>
+  </head>
+  <body>
+    <nav class="ct-nav container-fluid mt-3 mb-3">
+      <a href="{{ url_for('site.home') }}" class="ms-5">
+        <div class="nav-logo">
+          <i class="fa-solid fa-plane logo-icon"></i>
+          <h4>Trip API</h4>
+        </div>
+      </a>
+      <div>
+        <ul id="horizontal-list" class="me-5">
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('site.home') }}"><li>Home</li></a>
+          <a href="{{ url_for('site.profile') }}"><li>Profile</li></a>
+          <a href="{{ url_for('auth.logout') }}"><li>Log out</li></a>
+          {% else %}
+          <a href="{{ url_for('auth.login') }}"><li>Sign in</li></a>
+          <a href="{{ url_for('auth.signup') }}"><li>Sign up</li></a>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {% block content %} {% endblock content %}
+    <footer>
+        
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
